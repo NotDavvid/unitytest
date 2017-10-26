@@ -7,11 +7,13 @@ public class move : MonoBehaviour {
 
     public Rigidbody cube;
     public float force = 200;
-    private float distance = 10.0f;
     private float currentX = 0.0f;
     private float currentY = 0.0f;
-    private float sensivityX = 4.0f;
-    private float sensivityY = 1.0f;
+	public GameObject boss;
+	public bool combo1 = false;
+	public bool combo2 = false;
+	public bool combo3 = false;
+
     private void FixedUpdate()
     {
         if (Input.GetKey("d"))
@@ -36,17 +38,45 @@ public class move : MonoBehaviour {
 
     private void Update()
     {
+		checkforcombo ();
         currentX += Input.GetAxis("Mouse X");
         currentY += Input.GetAxis("Mouse Y");
-
         currentY = Mathf.Clamp(currentY, Y_ANGLE_MIN, Y_ANGLE_MAX);
+
     }
 
     private void LateUpdate()
     {
-        Vector3 dir = new Vector3(0, 0, -distance);
         Quaternion rotation = Quaternion.Euler(currentY*20, currentX*20, 0);
         transform.rotation = rotation;
 
     }
+
+	void dodamage(int dmg){
+		boss.GetComponent<FireNotes> ().health = boss.GetComponent<FireNotes> ().health - dmg;
+	}
+
+	void checkforcombo(){
+		if(Input.GetKeyDown("z") || combo1){
+			combo1 = true;
+			if (Input.GetKeyDown("x") || combo2) {
+				combo2 = true;
+				if (Input.GetKey ("c")) {
+					combo3 = true;
+					if (combo3) {
+						dodamage (10);
+						combo1 = false;
+						combo2 = false;
+						combo3 = false;
+					}
+				} else if(Input.anyKeyDown && !Input.GetKeyDown("x")){
+					combo2 = false;
+					combo1 = false;
+				}
+			} else if(Input.anyKeyDown && !Input.GetKeyDown("z")){
+				combo1 = false;
+			}
+		}
+	}
+
 }

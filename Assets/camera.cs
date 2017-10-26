@@ -9,18 +9,16 @@ public class camera : MonoBehaviour {
     public Transform lookAt;
     public Transform camTransform;
 
-    private Camera cam;
+    //private Camera cam;
 
     private float distance = 10.0f;
     private float currentX = 0.0f;
     private float currentY = 0.0f;
-    private float sensivityX = 4.0f;
-    private float sensivityY = 1.0f;
-
+    
     private void start()
     {
         camTransform = transform;
-        cam = Camera.main;
+        //cam = Camera.main;
     }
 
     private void Update()
