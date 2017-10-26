@@ -14,7 +14,7 @@ public class move : MonoBehaviour {
     private float sensivityY = 1.0f;
     private void FixedUpdate()
     {
-        if (Input.GetKey("a"))
+        if (Input.GetKey("d"))
         {
             cube.AddRelativeForce(force, 0, 0);
            
@@ -24,7 +24,7 @@ public class move : MonoBehaviour {
             cube.AddRelativeForce(0, 0, force);
             
         }
-        if (Input.GetKey("d"))
+        if (Input.GetKey("a"))
         {
             cube.AddRelativeForce(-force, 0, 0);
         }
@@ -45,7 +45,7 @@ public class move : MonoBehaviour {
     private void LateUpdate()
     {
         Vector3 dir = new Vector3(0, 0, -distance);
-        Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
+        Quaternion rotation = Quaternion.Euler(currentY*20, currentX*20, 0);
         transform.rotation = rotation;
 
     }
