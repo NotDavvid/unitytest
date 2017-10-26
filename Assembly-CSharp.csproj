@@ -54,6 +54,7 @@
      <Compile Include="Assets\camera.cs" />
      <Compile Include="Assets\FireNotes.cs" />
      <Compile Include="Assets\Health.cs" />
+     <Compile Include="Assets\hitcheck.cs" />
      <Compile Include="Assets\move.cs" />
      <Compile Include="Assets\notestofire.cs" />
  <Reference Include="UnityEngine.UIAutomation">
